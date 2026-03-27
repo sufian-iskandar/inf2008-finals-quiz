@@ -159,7 +159,7 @@ function rH(el){
 const al=S.sl.size===T.length,cn=Q.filter(x=>S.sl.has(x.t)).length;
 el.innerHTML=`<div class="hd"><h1>INF2008 Machine Learning Finals</h1><p>Interactive Revision (Lectures 1-12 & Labs) · <span class="mn">${Q.length} questions</span></p></div>
 <div class="cl"><button class="sa" onclick="tA()">${al?'Deselect All':'Select All'}</button><span class="qn">${cn} questions selected</span></div>
-<div class="tg">${T.map(t=>`<div class="tc ${S.sl.has(t)?'sl':''}" onclick="tT('${t}')"><span class="tn">${t.split('.')[0].trim()}</span><h3>${t.split('. ')[1]}</h3><span>${Q.filter(x=>x.t===t).length} questions</span></div>`).join('')}</div>
+<div class="tg">${T.map(t=>`<div class="tc ${S.sl.has(t)?'sl':''}" onclick="tT('${t}')"><span class="tn">Review Module</span><h3>${t.replace(/^\d+\.\s*/, '')}</h3><span>${Q.filter(x=>x.t===t).length} questions</span></div>`).join('')}</div>
 <div class="bg_"><button class="bt bp" onclick="go()" ${!S.sl.size?'disabled':''}>Start Quiz →</button></div>`}
 
 function rQ(el){
