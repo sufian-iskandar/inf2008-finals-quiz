@@ -21,8 +21,23 @@
 <body>
 <div class="ct" id="app"></div>
 <script>
-// INF2008 Finals Question Bank (Lectures 1-12, Labs 1-7, Midterm & Weekly Quizzes)
+// INF2008 Finals Question Bank (Lectures 1-12, Labs, Midterms, + Professor-Style Mock Questions)
 const Q=[
+
+// ══════════ THE "PROFESSOR-STYLE" MOCK QUESTIONS (NEW) ══════════
+{t: "1. Midterm: Theory", tp: "multi", q: "[MOCK] You are building a model to predict credit card default. The dataset contains a feature 'collection_agency_assigned' which is 1 if the bank had to send debt collectors after the user. Which statements are logically justified?", o: ["This feature will likely be the most important split in a decision tree.", "Including this feature causes severe Target Leakage.", "This feature should be One-Hot Encoded before training.", "The model's accuracy will appear artificially low during testing.", "This feature represents information from the future that would not be available at the time of prediction."], m: [0, 1, 4], e: "Target Leakage trap. Because collection agencies are only assigned AFTER a default happens, the tree will instantly lock onto it as a 100% accurate predictor. In the real world (at prediction time), you wouldn't know this yet."},
+{t: "1. Midterm: Theory", tp: "multi", q: "[MOCK] You set `max_depth=2` and `min_samples_leaf=50` on a complex non-linear dataset containing 1,000 rows. You observe high error on both the training and validation sets. What is the diagnosis and solution?", o: ["The model exhibits High Variance; you should increase min_samples_leaf.", "The model exhibits High Bias; you should increase max_depth.", "The model is underfitting the data.", "The model is memorizing the noise in the dataset.", "The model exhibits High Bias; you should decrease min_samples_leaf."], m: [1, 2, 4], e: "These hyperparameter settings severely constrain the tree, preventing it from learning complex patterns (Underfitting / High Bias). You must loosen the constraints to fix it."},
+{t: "2. Ensemble Methods", tp: "multi", q: "[MOCK] You train a Random Forest and notice it is slightly underperforming. You decide to increase `n_estimators` from 100 to 10,000. Which of the following are expected outcomes?", o: ["The computational cost and training time will increase significantly.", "The model will inevitably overfit the training data due to excessive complexity.", "The variance reduction will eventually plateau, yielding diminishing returns.", "The bias of the model will decrease significantly.", "The Out-Of-Bag (OOB) error estimation will become invalid."], m: [0, 2], e: "A classic professor trap. In Bagging (Random Forests), adding more trees does NOT cause overfitting (unlike Boosting). It simply averages out, hitting a mathematical plateau where performance stops improving but training time skyrockets."},
+{t: "2. Ensemble Methods", tp: "multi", q: "[MOCK] You train a Gradient Boosting model. Training error smoothly reaches 0.001, but you notice the validation error drops initially, then begins steadily climbing after iteration 50. Which statements logically explain this?", o: ["The learning rate (eta) is set too low.", "The model is exhibiting High Variance (Overfitting) after iteration 50.", "You should implement Early Stopping around iteration 50.", "The model requires more trees to capture the underlying pattern.", "The validation set is too small to be statistically significant."], m: [1, 2], e: "Unlike Random Forests, Boosting *can* overfit if allowed to run too long, because it obsessively learns the noise of the training data. Early stopping prevents this."},
+{t: "3. Embeddings", tp: "multi", q: "[MOCK] You apply Label Encoding to a 'City' feature (London=0, Paris=1, Tokyo=2) and feed it directly into a Multiple Linear Regression model. Which consequences are logically consistent?", o: ["The model will treat Tokyo as being mathematically 'twice as much' as Paris.", "The model will perfectly understand these are distinct, non-ordered categories.", "The encoding introduces an artificial ordinal relationship that corrupts the slope (m) calculations.", "The model will fail to compile because Linear Regression requires One-Hot Encoding.", "This is the optimal approach to save memory without sacrificing accuracy."], m: [0, 2], e: "Linear models do math. If you feed them categorical labels as integers, they will multiply those integers by weights, falsely assuming an inherent hierarchy where Tokyo > Paris > London."},
+{t: "4. Linear Models I", tp: "multi", q: "[MOCK] You add a single massive outlier to a Simple Linear Regression dataset. How will the 'Line of Best Fit' likely react, and why?", o: ["The line will completely ignore the outlier because regression uses median-based robust statistics.", "The line will tilt heavily toward the outlier.", "The outlier disproportionately affects the model because the cost function squares the residuals.", "The slope (m) will remain identical, but the intercept (c) will shift.", "The RMSE of the model will decrease."], m: [1, 2], e: "Because Linear Regression minimizes the *Squared* Error, a point far away from the line generates an exponentially massive penalty. The algorithm is forced to tilt the line toward the outlier to reduce that massive squared penalty."},
+{t: "5. Linear Models II", tp: "multi", q: "[MOCK] A neural network outputs raw logits: z = [10, 10, 10] for a 3-class problem. After applying the Softmax function, what must be true?", o: ["The resulting probabilities will be exactly [0.333, 0.333, 0.333].", "The resulting probabilities will sum to exactly 30.", "The network is highly confident in its prediction.", "The network is essentially making a random guess across the three classes.", "Applying the Sigmoid function instead would result in the exact same outputs."], m: [0, 3], e: "Softmax forces logits into a probability distribution summing to 1. Because the raw logits are identical, the probabilities are split perfectly evenly, indicating zero confidence/random guessing."},
+{t: "5. Linear Models II", tp: "multi", q: "[MOCK] You are building a very deep neural network with 50 hidden layers. You decide to use the Sigmoid activation function for every hidden layer instead of ReLU. Which risks are logically possible?", o: ["The network will suffer from the Vanishing Gradient problem during backpropagation.", "The network will learn significantly faster than a ReLU network.", "Neurons in the deep layers may saturate, causing their gradients to approach zero.", "The model will output probabilities summing to 1 at every single layer.", "The decision boundaries will remain perfectly linear."], m: [0, 2], e: "A classic deep learning trap. Sigmoid squashes values between 0 and 1. When you chain 50 of these together, the gradients multiply by tiny decimals during backpropagation, shrinking to zero (vanishing) before they ever reach the early layers, halting learning."},
+{t: "6. Unsupervised Learning", tp: "multi", q: "[MOCK] You run the K-Means algorithm 5 different times on the exact same dataset using `k=3`. You notice the final clusters look slightly different each time. Which statements explain this?", o: ["K-Means relies on random initialization of the starting centroids.", "The algorithm may be getting trapped in different local minima during gradient descent.", "K-Means is fundamentally non-deterministic and never converges.", "The dataset likely contains nested, non-spherical shapes (e.g., moons) that confuse the distance metric.", "You should use DBSCAN instead to guarantee identical results every run if parameters are fixed."], m: [0, 1, 3, 4], e: "K-Means drops centroids randomly at the start. Depending on where they land, they can fall into different local optimums. If the data is non-spherical, it causes chaotic boundaries. DBSCAN is deterministic based on density."},
+{t: "6. Unsupervised Learning", tp: "multi", q: "[MOCK] You configure DBSCAN with `MinPts = 2` and set `ε (epsilon)` to an extremely small fraction close to 0. What is the most likely outcome?", o: ["The algorithm will group the entire dataset into one massive cluster.", "Almost every data point will be classified as an outlier/noise.", "The algorithm will form thousands of tiny micro-clusters.", "DBSCAN will automatically override your epsilon to find the optimal global variance.", "The algorithm will fail to compile."], m: [1, 2], e: "Epsilon is the 'search radius'. If the radius is microscopically small, very few points will find a neighbor. The vast majority of points will be labeled as noise, and only points sitting exactly on top of each other will form micro-clusters."},
+{t: "7. PCA & t-SNE", tp: "multi", q: "[MOCK] You run PCA on a dataset. Principal Component 1 (PC1) explains 90% of the variance, and PC2 explains 5%. Which statements are mathematically true?", o: ["PC1 and PC2 represent orthogonal (perpendicular) axes in the new feature space.", "PC1 captures the direction of maximum spread/scatter in the original dataset.", "You can safely drop PC1 to prevent overfitting.", "t-SNE would guarantee a better variance preservation than PC1.", "PC2 is highly correlated with PC1."], m: [0, 1], e: "PCA specifically creates axes that are completely uncorrelated (orthogonal) to each other. PC1 *always* points in the direction of the widest spread (highest variance). Dropping PC1 would destroy 90% of your data's information."},
+{t: "8. Lab Concepts", tp: "multi", q: "[MOCK] You apply the SMOTE resampling algorithm to your entire dataset. AFTER applying SMOTE, you call `train_test_split()`. Which statements logically describe the outcome?", o: ["This is the optimal way to handle class imbalance.", "This introduces severe Data Leakage.", "Synthetic data points generated from training examples will inevitably bleed into the Test Set.", "The model's Recall on the test set will be artificially inflated and highly deceptive.", "The `imblearn.pipeline` object requires this exact sequence of operations."], m: [1, 2, 3], e: "This is the ultimate Lab trap. If you SMOTE before splitting, synthetic points (which are mathematical clones of training data) end up in the validation set. The model is essentially being tested on data it already memorized, ruining the integrity of the test."},
+
 // ══════════ MIDTERM REVISION: THEORY ══════════
 {t: "1. Midterm: Theory", tp: "multi", q: "You are building a model to predict whether a student will fail a course at the end of the semester. The prediction is made at Week 6. Which features introduce serious validity problems (Target Leakage)?", o: ["risk_flag_assigned_by_advisor", "attendance_rate_first_6_weeks", "major", "final_exam_score", "total_number_of_assignments_submitted"], m: [0, 3], e: "Final exam score happens after Week 6. The risk flag might incorporate future subjective knowledge or proxy data not uniformly available at Week 6."},
 {t: "1. Midterm: Theory", tp: "multi", q: "A hospital dataset contains: patient_id, triage_level (1=critical, 2=urgent, 3=non-urgent), ward_number, body_temperature_celsius, diagnosis_code. Which variables would make taking a mean or variance mathematically invalid or conceptually meaningless?", o: ["triage_level", "diagnosis_code", "ward_number", "body_temperature_celsius", "patient_id"], m: [0, 1, 2, 4], e: "These are nominal/categorical or ordinal identifiers. Taking the average of a diagnosis code or patient ID is mathematically meaningless."},
@@ -133,7 +148,6 @@ function isM(q){return Array.isArray(q.m)}
 function gQ(){return sh(Q.filter(x=>S.sl.has(x.t)))}
 
 // RIGHT-MINUS-WRONG GRADING LOGIC
-// Returns a float between 0.0 and 1.0 representing the partial score for a single question.
 function cor(q, ans){
     if(!isM(q)) return ans===q.a ? 1 : 0; 
     if(!Array.isArray(ans)) return 0;
@@ -142,14 +156,10 @@ function cor(q, ans){
     if(c.size===0) return s.size===0?1:0;
     
     let score = 0;
-    // Each correctly selected option gives (+ 1 / total_correct)
-    // Each incorrectly selected option gives (- 1 / total_correct)
     for(const v of s) {
         if(c.has(v)) score += (1 / c.size);
         else score -= (1 / c.size); 
     }
-    
-    // Prevent negative scores per question, cap at 1
     return Math.max(0, Math.min(1, score));
 }
 
@@ -167,7 +177,6 @@ const q=S.qs[S.ci],n=S.qs.length,p=S.ci/n*100,d=S.an[S.ci]!=null,multi=isM(q),u=
 const uSet=multi&&Array.isArray(u)?new Set(u):new Set();
 const cSet=multi?new Set(q.m):new Set([q.a]);
 
-// Grade classification for UI display
 let scoreVal = 0;
 let statusText = '';
 if(d) {
@@ -183,9 +192,9 @@ el.innerHTML=`<div class="qh"><span class="qt">${q.t}</span><span class="qp">${S
 let c='op';
 if(d){
   c+=' ds';
-  if(cSet.has(i))c+=' ok'; // Correct answer highlighted green
-  else if(uSet.has(i)&&!cSet.has(i))c+=' no'; // Wrong answer user picked highlighted red
-  else c+=' dm'; // Dim unselected wrong answers
+  if(cSet.has(i))c+=' ok'; 
+  else if(uSet.has(i)&&!cSet.has(i))c+=' no'; 
+  else c+=' dm'; 
 }else if(multi&&S.ms.has(i)){c+=' sel'}
 return`<div class="${c}" onclick="${multi?(d?'':`mt(${i})`):(`pk(${i})`)}">
 ${multi?`<span class="cb">${(d?(cSet.has(i)?'✓':(uSet.has(i)?'✗':'')):(S.ms.has(i)?'✓':''))}</span>`:`<span class="ol">${'ABCD'[i]}</span>`}
@@ -199,12 +208,11 @@ ${d?`<div class="ex"><strong>${statusText}</strong> — ${q.e}</div>`:''}</div>
 function rR(el){
 const n=S.qs.length;
 
-// Accumulate total partial points
 let totalPoints = 0;
 S.an.forEach((a, i) => { totalPoints += cor(S.qs[i], a); });
-totalPoints = Math.round(totalPoints * 100) / 100; // Round to 2 decimals
+totalPoints = Math.round(totalPoints * 100) / 100; 
 
-const p = Math.round((totalPoints / n) * 100); // Percentage
+const p = Math.round((totalPoints / n) * 100); 
 const ci=2*Math.PI*76, of_=ci-p/100*ci;
 
 let gc,gl;if(p>=85){gc='a';gl='Excellent'}else if(p>=70){gc='b';gl='Good'}else if(p>=50){gc='c';gl='Needs Work'}else{gc='f';gl='Review Material'}
