@@ -6,24 +6,90 @@
 <title>INF2008 Machine Learning Finals Quiz</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#0a0e17;--sf:#111827;--sf2:#1a2236;--bd:#2a3456;--ac:#22d3ee;--ac2:#a78bfa;--ok:#34d399;--no:#f87171;--tx:#e2e8f0;--td:#64748b;--tb:#f8fafc;--wr:#fbbf24}body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(34,211,238,.06),transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(167,139,250,.06),transparent 50%);pointer-events:none;z-index:0}.ct{max-width:820px;margin:0 auto;padding:24px 20px;position:relative;z-index:1}.hd{text-align:center;padding:48px 0 32px}.hd h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-.03em;background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}.hd p{color:var(--td);font-size:.95rem;font-weight:300}.mn{font-family:'JetBrains Mono',monospace}.tg{display:grid;grid-template-columns:1fr;gap:12px;margin:24px 0}@media(min-width:600px){.tg{grid-template-columns:1fr 1fr}}.tc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:20px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}.tc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--ac);opacity:0;transition:opacity .25s}.tc:hover{border-color:var(--ac);transform:translateY(-2px);box-shadow:0 8px 32px rgba(34,211,238,.08)}.tc:hover::before,.tc.sl::before{opacity:1}.tc.sl{border-color:var(--ac);background:rgba(34,211,238,.05)}.tc h3{font-size:.95rem;font-weight:700;color:var(--tb);margin-bottom:4px}.tc>span{font-size:.8rem;color:var(--td);font-weight:300}.tn{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--ac);font-weight:700;margin-bottom:6px;display:block}.bt{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;border:none;border-radius:10px;padding:14px 32px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}.bp{background:linear-gradient(135deg,var(--ac),#06b6d4);color:var(--bg);box-shadow:0 4px 20px rgba(34,211,238,.25)}.bp:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(34,211,238,.35)}.bp:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}.bs{background:var(--sf2);color:var(--tx);border:1px solid var(--bd)}.bs:hover{border-color:var(--ac);color:var(--ac)}.bg_{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}.qh{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--bd)}.qp{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--td)}.qt{font-size:.8rem;color:var(--ac);font-weight:500}.pb{width:100%;height:4px;background:var(--sf2);border-radius:4px;margin-bottom:32px;overflow:hidden}.pf{height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:4px;transition:width .4s}.qc{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:32px;margin-bottom:20px;animation:fu .4s}@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}.qc h2{font-size:1.05rem;font-weight:700;color:var(--tb);line-height:1.6;margin-bottom:24px}.qc code{font-family:'JetBrains Mono',monospace;background:var(--sf2);padding:2px 8px;border-radius:4px;font-size:.85rem;color:var(--ac)}.os{display:flex;flex-direction:column;gap:10px}.op{background:var(--sf2);border:1.5px solid var(--bd);border-radius:10px;padding:14px 18px;cursor:pointer;transition:all .2s;font-size:.93rem;line-height:1.5;display:flex;align-items:flex-start;gap:12px}.op:hover:not(.ds){border-color:rgba(34,211,238,.5);background:rgba(34,211,238,.04)}.ol{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--td);background:var(--bg);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}.op.ok{border-color:var(--ok);background:rgba(52,211,153,.08)}.op.ok .ol{color:var(--bg);background:var(--ok)}.op.no{border-color:var(--no);background:rgba(248,113,113,.08)}.op.no .ol{color:var(--bg);background:var(--no)}.op.ds{cursor:default}.op.dm{opacity:.45}.ex{margin-top:20px;padding:16px 20px;background:rgba(34,211,238,.04);border:1px solid rgba(34,211,238,.15);border-radius:10px;font-size:.88rem;line-height:1.65;animation:fu .3s}.ex strong{color:var(--ac)}.rs{text-align:center;animation:fu .5s}.sr{width:180px;height:180px;margin:32px auto;position:relative}.sr svg{width:100%;height:100%;transform:rotate(-90deg)}.sr circle{fill:none;stroke-width:8}.sr .bg2{stroke:var(--sf2)}.sr .fg{stroke:var(--ac);stroke-linecap:round;transition:stroke-dashoffset 1.5s}.st{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}.st .nm{font-size:2.8rem;font-weight:900;color:var(--tb);line-height:1}.st .lb{font-size:.75rem;color:var(--td);margin-top:4px;font-weight:500}.rs h2{font-size:1.5rem;font-weight:900;color:var(--tb);margin-bottom:8px}.gd{font-size:1rem;font-weight:700;padding:6px 16px;border-radius:8px;display:inline-block;margin:12px 0 24px}.gd.a{background:rgba(52,211,153,.12);color:var(--ok)}.gd.b{background:rgba(34,211,238,.12);color:var(--ac)}.gd.c{background:rgba(250,204,21,.12);color:#facc15}.gd.f{background:rgba(248,113,113,.12);color:var(--no)}.tb_{text-align:left;background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:24px;margin:24px 0}.tb_ h3{font-size:.85rem;font-weight:700;color:var(--td);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px}.br{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}.br:last-child{border:none}.br span:first-child{font-size:.88rem}.br span:last-child{font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:700}.cl{display:flex;justify-content:space-between;align-items:center;margin:16px 0 4px;flex-wrap:wrap;gap:8px}.sa{font-size:.82rem;color:var(--ac);cursor:pointer;font-weight:500;background:none;border:none;font-family:'Outfit',sans-serif}.sa:hover{text-decoration:underline}.qn{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--td)}.ms-tag{display:inline-block;font-size:.7rem;font-weight:700;color:var(--ac2);background:rgba(167,139,250,.12);padding:3px 10px;border-radius:6px;margin-left:8px;vertical-align:middle}
-.op.sel{border-color:var(--ac2);background:rgba(167,139,250,.08)}.op.sel .ol{color:var(--bg);background:var(--ac2)}
-.cb{width:16px;height:16px;border:2px solid var(--bd);border-radius:4px;flex-shrink:0;margin-top:3px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:10px;color:transparent}
+:root{--bg:#0b101a;--sf:#151b29;--sf2:#1e293b;--bd:#334155;--ac:#22d3ee;--ac2:#a78bfa;--ok:#34d399;--no:#f87171;--tx:#f8fafc;--td:#94a3b8;--wr:#fbbf24}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;padding:24px 16px;overflow-y:scroll}
+.ct{max-width:900px;margin:0 auto}
+
+/* Header & Title */
+.hd{text-align:center;margin-bottom:32px}
+.hd h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:900;background:linear-gradient(135deg,var(--ok),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.hd p{color:var(--td);font-size:.95rem;font-weight:300}
+
+/* Top Stats Dashboard */
+.db-row{display:flex;justify-content:center;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.db-box{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:16px 24px;min-width:140px;text-align:center;display:flex;flex-direction:column;gap:4px;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.db-box span{font-size:.75rem;font-weight:700;color:var(--td);letter-spacing:.05em;text-transform:uppercase}
+.db-box strong{font-size:1.8rem;font-weight:900;color:var(--ok);font-family:'JetBrains Mono',monospace}
+
+/* Divider */
+.div-line{height:4px;background:var(--sf2);border-radius:4px;margin-bottom:24px;width:100%}
+
+/* Filters (Topics) */
+.filt-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:24px}
+.filt-btn{background:transparent;border:1px solid var(--bd);color:var(--td);padding:8px 16px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+.filt-btn:hover{background:var(--sf2);color:var(--tx)}
+.filt-btn.act{border-color:var(--ok);color:var(--ok);background:rgba(52,211,153,.05)}
+
+/* Controls */
+.ctrl-row{display:flex;justify-content:center;gap:12px;margin-bottom:32px}
+.ctrl-btn{background:var(--sf);border:1px solid var(--bd);color:var(--tx);padding:10px 24px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.ctrl-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.ctrl-btn.qm{border-color:var(--ac2);color:var(--ac2)}
+.ctrl-btn.qm:hover{background:rgba(167,139,250,.1)}
+.ctrl-btn.rst{border-color:var(--no);color:var(--no)}
+.ctrl-btn.rst:hover{background:rgba(248,113,113,.1)}
+.ctrl-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+
+/* Content Area */
+.qc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:24px;margin-bottom:20px;animation:fu .3s}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.qt{font-size:.75rem;font-weight:700;color:var(--ok);text-transform:uppercase;letter-spacing:.05em}
+.qp{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--td)}
+.qc h2{font-size:1.1rem;font-weight:500;line-height:1.5;margin-bottom:24px;color:var(--tx)}
+
+/* Options */
+.os{display:flex;flex-direction:column;gap:10px}
+.op{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:14px 18px;cursor:pointer;transition:all .2s;font-size:.95rem;line-height:1.5;display:flex;align-items:flex-start;gap:12px}
+.op:hover:not(.ds){border-color:var(--ac);background:rgba(34,211,238,.04)}
+.ol{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--td);background:var(--sf2);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* Option States */
+.op.sel{border-color:var(--ac2);background:rgba(167,139,250,.08)}
+.op.sel .ol{color:var(--tx);background:var(--ac2)}
+.op.ok{border-color:var(--ok);background:rgba(52,211,153,.08)}
+.op.ok .ol{color:var(--bg);background:var(--ok)}
+.op.no{border-color:var(--no);background:rgba(248,113,113,.08)}
+.op.no .ol{color:var(--bg);background:var(--no)}
+.op.ds{cursor:default}
+.op.dm{opacity:.45}
+
+/* Checkbox for Multi */
+.cb{width:18px;height:18px;border:2px solid var(--bd);border-radius:4px;flex-shrink:0;margin-top:3px;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all .2s}
 .op.sel .cb{border-color:var(--ac2);background:var(--ac2);color:var(--bg)}
 .op.ok .cb{border-color:var(--ok);background:var(--ok);color:var(--bg)}
 .op.no .cb{border-color:var(--no);background:var(--no);color:var(--bg)}
-.op.dm .cb{opacity:.45}
-.sub-btn{font-family:'Outfit',sans-serif;font-weight:700;font-size:.9rem;border:none;border-radius:8px;padding:10px 24px;cursor:pointer;background:var(--ac2);color:var(--bg);margin-top:16px;transition:all .2s;box-shadow:0 2px 12px rgba(167,139,250,.25)}.sub-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(167,139,250,.35)}.sub-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Utilities */
+.ms-tag{display:inline-block;font-size:.65rem;font-weight:700;color:var(--ac2);background:rgba(167,139,250,.15);padding:3px 8px;border-radius:4px;margin-left:8px;vertical-align:middle}
+.ex{margin-top:20px;padding:16px;background:rgba(34,211,238,.05);border-left:3px solid var(--ac);border-radius:0 8px 8px 0;font-size:.9rem;line-height:1.6;color:var(--td)}
+.ex strong{color:var(--tx)}
+.nx-btn{background:var(--tx);color:var(--bg);border:none;padding:12px 24px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:20px;width:100%;transition:all .2s}
+.nx-btn:hover{background:var(--ac);box-shadow:0 0 15px rgba(34,211,238,.4)}
 .partial{color:var(--wr);font-weight:bold;}
-@media(max-width:480px){.qc{padding:20px}.hd{padding:32px 0 20px}.hd h1{font-size:1.4rem}}
+
+/* Home/Review States */
+.msg-box{text-align:center;padding:60px 20px;color:var(--td)}
+.msg-box h2{color:var(--tx);margin-bottom:8px}
 </style>
 </head>
 <body>
 <div class="ct" id="app"></div>
+
 <script>
-// INF2008 Finals Question Bank (Lectures 1-12, Labs, Midterms)
+// INF2008 Finals Question Bank
 const Q=[
-// ══════════ 1. MIDTERM REVISION (THEORY, PROGRAMMING, CALCULATION) ══════════
 {t: "1. Midterm Revision", tp: "multi", q: "You are building a model to predict whether a student will fail a course at the end of the semester. The prediction is made at Week 6. Which features introduce serious validity problems (Target Leakage)?", o: ["risk_flag_assigned_by_advisor", "attendance_rate_first_6_weeks", "major", "final_exam_score", "total_number_of_assignments_submitted"], m: [0, 3], e: "Final exam score happens after Week 6. The risk flag might incorporate future subjective knowledge or proxy data not uniformly available at Week 6."},
 {t: "1. Midterm Revision", tp: "multi", q: "You are building a model to predict credit card default. The dataset contains a feature 'collection_agency_assigned' which is 1 if the bank had to send debt collectors. Which statements are logically justified?", o: ["This feature will likely be the most important split in a decision tree.", "Including this feature causes severe Target Leakage.", "This feature should be One-Hot Encoded before training.", "The model's accuracy will appear artificially low during testing.", "This feature represents information from the future that would not be available at prediction time."], m: [0, 1, 4], e: "Target Leakage trap. Because collection agencies are only assigned AFTER a default happens, the tree will instantly lock onto it as a 100% accurate predictor. In the real world, you wouldn't know this yet."},
 {t: "1. Midterm Revision", tp: "multi", q: "A hospital dataset contains: patient_id, triage_level (1=critical, 2=urgent, 3=non-urgent), ward_number, body_temperature_celsius, diagnosis_code. Which variables would make taking a mean or variance mathematically invalid or conceptually meaningless?", o: ["triage_level", "diagnosis_code", "ward_number", "body_temperature_celsius", "patient_id"], m: [0, 1, 2, 4], e: "These are nominal/categorical or ordinal identifiers. Taking the average of a diagnosis code or patient ID is mathematically meaningless."},
@@ -54,7 +120,6 @@ const Q=[
 {t: "1. Midterm Revision", tp: "multi", q: "Feature X produces: Node A (4 samples: 3+, 1-) and Node B (6 samples: 2+, 4-). Calculate Information Gain.", o: ["None of the above", "Information Gain ≈ 0.125", "Information Gain ≈ 0.083", "Weighted Entropy ≈ 0.875", "Weighted Gini ≈ 0.417"], m: [1, 3, 4], e: "Weighted Gini = (4/10 * 0.375) + (6/10 * 0.444) = 0.417. Information gain (Entropy) = Root(1.0) - WeightedEntropy(0.875) = 0.125."},
 {t: "1. Midterm Revision", tp: "multi", q: "Feature Y produces: Node Yes (5 samples: 3+, 2-) and Node No (5 samples: 2+, 3-). Calculate Information Gain.", o: ["Split improves over root", "Weighted Gini ≈ 0.48", "Entropy reduction is smaller than for split on X", "Weighted Entropy ≈ 0.971", "Information Gain is zero"], m: [0, 1, 2, 3], e: "Because the weighted Gini (0.48) is lower than the root Gini (0.5), this split does improve over the root, but the reduction is tiny compared to splitting on Feature X."},
 
-// ══════════ 2. ENSEMBLE METHODS ══════════
 {t: "2. Ensemble Methods", tp: "multi", q: "In Gradient Boosting, what do new sequential trees learn?", o: ["Residuals", "Loss gradients", "Original labels directly", "Original target values", "Bootstrap-resampled targets"], m: [0, 1], e: "Gradient boosting models are trained sequentially, where each new model focuses on minimizing the errors (residuals/loss gradients) of the previous models."},
 {t: "2. Ensemble Methods", tp: "multi", q: "Why is feature subsampling important in Random Forests?", o: ["Prevents strong features from dominating all trees", "Increases tree diversity", "Reduces correlation between trees", "Increases bias significantly", "Improves ensemble variance reduction"], m: [0, 1, 2, 4], e: "Feature subsampling prevents a single dominant feature from being the root node every time, which decorrelates the trees and reduces variance."},
 {t: "2. Ensemble Methods", tp: "multi", q: "What are the primary goals of bagging (bootstrap aggregation)?", o: ["Reduce bias by increasing model complexity", "Reduce variance by averaging multiple models", "Eliminate noise from the dataset", "Improve interpretability of individual models", "Prevent overfitting on high-variance models like unpruned decision trees"], m: [1, 4], e: "Bagging averages independent models to reduce Variance (overfitting). It does not reduce Bias (that is what Boosting does)."},
@@ -64,7 +129,6 @@ const Q=[
 {t: "2. Ensemble Methods", tp: "multi", q: "You train a Random Forest and notice it is slightly underperforming. You decide to increase `n_estimators` from 100 to 10,000. Which of the following are expected outcomes?", o: ["The computational cost and training time will increase significantly.", "The model will inevitably overfit the training data due to excessive complexity.", "The variance reduction will eventually plateau, yielding diminishing returns.", "The bias of the model will decrease significantly.", "The Out-Of-Bag (OOB) error estimation will become invalid."], m: [0, 2], e: "A classic trap. In Bagging (Random Forests), adding more trees does NOT cause overfitting (unlike Boosting). It simply averages out, hitting a mathematical plateau where performance stops improving but training time skyrockets."},
 {t: "2. Ensemble Methods", tp: "multi", q: "You train a Gradient Boosting model. Training error smoothly reaches 0.001, but you notice the validation error drops initially, then begins steadily climbing after iteration 50. Which statements logically explain this?", o: ["The learning rate (eta) is set too low.", "The model is exhibiting High Variance (Overfitting) after iteration 50.", "You should implement Early Stopping around iteration 50.", "The model requires more trees to capture the underlying pattern.", "The validation set is too small to be statistically significant."], m: [1, 2], e: "Unlike Random Forests, Boosting *can* overfit if allowed to run too long, because it obsessively learns the noise of the training data. Early stopping prevents this."},
 
-// ══════════ 3. EMBEDDINGS & ENCODING ══════════
 {t: "3. Embeddings & Encoding", tp: "multi", q: "Which of the following statements about One-Hot Encoding (OHE) versus Label Encoding are correct?", o: ["OHE avoids Ordinal Misinterpretation by creating separate binary columns", "Label Encoding is highly recommended for Non-Ordered Categorical Features like 'Color'", "OHE can lead to the Curse of Dimensionality if there are many unique categories", "Label Encoding is generally more memory efficient than OHE"], m: [0, 2, 3], e: "Label encoding imposes an artificial mathematical hierarchy (0 < 1 < 2). OHE fixes this, but consumes massive memory and expands dimensions."},
 {t: "3. Embeddings & Encoding", tp: "multi", q: "Why do categorical features require encoding before model training?", o: ["Because computers and ML models only understand numbers natively", "To compress the dataset size for faster memory allocation", "Because algorithms like Linear Regression interpret distances mathematically, which fails on raw text", "To automatically mitigate class imbalance in the target variable"], m: [0, 2], e: "Machine learning algorithms perform mathematical operations. They cannot compute distance or weights on strings like 'Red' or 'Venti'."},
 {t: "3. Embeddings & Encoding", tp: "multi", q: "When is Label Encoding explicitly the CORRECT choice over One-Hot Encoding?", o: ["When the categorical variable represents geographic locations (e.g., zip codes).", "When the categorical variable has a natural, inherent order (e.g., Low, Medium, High).", "When you want to prevent the model from assuming a mathematical relationship between categories.", "When using tree-based models that can handle ordinal splits effectively."], m: [1, 3], e: "If the data has an order (Ordinal Data), Label Encoding perfectly preserves that rank. Tree models can split on these integer ranks efficiently."},
@@ -72,7 +136,6 @@ const Q=[
 {t: "3. Embeddings & Encoding", tp: "multi", q: "Label Encoding: Red=0, Blue=1, Green=2. Which risks are logically possible?", o: ["The model may treat the numeric gaps (2 − 0) as meaningful distance.", "The model may assume Green > Blue > Red in a meaningful way.", "The encoding introduces an artificial ordinal relationship.", "The encoding reduces memory usage compared to one-hot encoding.", "The model will automatically learn that the values are categorical."], m: [0, 1, 2, 3], e: "Label Encoding saves memory compared to OHE, but severely risks confusing Linear Models into thinking Green is mathematically 'worth twice as much' as Blue."},
 {t: "3. Embeddings & Encoding", tp: "multi", q: "You apply Label Encoding to a 'City' feature (London=0, Paris=1, Tokyo=2) and feed it directly into a Multiple Linear Regression model. Which consequences are logically consistent?", o: ["The model will treat Tokyo as being mathematically 'twice as much' as Paris.", "The model will perfectly understand these are distinct, non-ordered categories.", "The encoding introduces an artificial ordinal relationship that corrupts the slope (m) calculations.", "The model will fail to compile because Linear Regression requires One-Hot Encoding.", "This is the optimal approach to save memory without sacrificing accuracy."], m: [0, 2], e: "Linear models do math. If you feed them categorical labels as integers, they will multiply those integers by weights, falsely assuming an inherent hierarchy where Tokyo > Paris > London."},
 
-// ══════════ 4. LINEAR MODELS I ══════════
 {t: "4. Linear Models I", tp: "multi", q: "If the activation function of a single-layer perceptron does nothing to the math (i.e., f(z) = z), the perceptron is mathematically identical to which of the following?", o: ["Logistic Regression", "Multiple Linear Regression", "Decision Tree", "Support Vector Machine"], m: [1], e: "Without a non-linear activation function, a neural network calculates the weighted sum of inputs plus bias (z = Σ(m*x) + c), which is exactly Multiple Linear Regression."},
 {t: "4. Linear Models I", tp: "multi", q: "In the pendulum experiment analogy for Simple Linear Regression, which statements are true?", o: ["The period of the pendulum is the dependent variable (y)", "The length of the pendulum is the independent variable (X)", "The algorithm seeks to maximize the Residuals", "Learning involves finding the slope (m) and intercept (c) that minimize the RMSE loss"], m: [0, 1, 3], e: "Dependent (y) is what you measure (time). Independent (X) is what you adjust (length). The goal is to minimize the error (RMSE)."},
 {t: "4. Linear Models I", tp: "multi", q: "What does the 'm' (weight/slope) represent in the linear regression equation y = mx + c?", o: ["The baseline prediction when all inputs are zero.", "How much of an impact the feature 'x' has on the target 'y'.", "The error (residual) between the prediction and the actual value.", "The multiplier—if x increases by 1 unit, y changes by 'm' units."], m: [1, 3], e: "'m' is the feature importance multiplier. 'c' is the intercept (baseline). Residuals are calculated separately."},
@@ -85,7 +148,6 @@ const Q=[
 {t: "4. Linear Models I", tp: "multi", q: "Suppose: y_actual = 10, y_pred = 8. Loss = (y_actual − y_pred)². Learning rate = 0.2. Which statements are correct?", o: ["The gradient with respect to y_pred is −4.", "The next prediction becomes 8.8.", "The update magnitude depends on the learning rate.", "The next prediction update moves upward.", "Boosting directly replaces the previous model."], m: [0, 1, 2, 3], e: "Loss calculation derivative mechanics: Grad = -2*(10-8) = -4. Update = y_pred - (LR * Grad) = 8 - (0.2 * -4) = 8.8."},
 {t: "4. Linear Models I", tp: "multi", q: "You add a single massive outlier to a Simple Linear Regression dataset. How will the 'Line of Best Fit' likely react, and why?", o: ["The line will completely ignore the outlier because regression uses median-based robust statistics.", "The line will tilt heavily toward the outlier.", "The outlier disproportionately affects the model because the cost function squares the residuals.", "The slope (m) will remain identical, but the intercept (c) will shift.", "The RMSE of the model will decrease."], m: [1, 2], e: "Because Linear Regression minimizes the *Squared* Error, a point far away from the line generates an exponentially massive penalty. The algorithm is forced to tilt the line toward the outlier to reduce that massive squared penalty."},
 
-// ══════════ 5. LINEAR MODELS II ══════════
 {t: "5. Linear Models II", tp: "multi", q: "A model produces logits: z = [3, 1, -1]. After applying the Softmax function, which statements MUST be true?", o: ["The probabilities sum to 1", "The class with the largest logit will have the largest probability", "All probabilities must be greater than zero", "The probabilities must be evenly spaced", "Increasing Z1 will decrease the other probabilities"], m: [0, 1, 2, 4], e: "Softmax forces outputs into a probability distribution (sum to 1, >0). If one logit's share increases, the others must mechanically decrease."},
 {t: "5. Linear Models II", tp: "multi", q: "Which choices are reasonable output activations when predicting continuous values like House Prices (Regression)?", o: ["Identity f(z) = z", "Sigmoid", "Softmax", "tanh", "Step function"], m: [0], e: "For regression tasks where the output can be any real number, do not constrain the output with Sigmoid (0 to 1) or Softmax (probabilities). Use Identity."},
 {t: "5. Linear Models II", tp: "multi", q: "What is the primary role of Gradient Descent in training neural networks?", o: ["To randomly initialize the weights and biases.", "To iteratively update the weights in the direction that minimizes the loss function.", "To calculate the final probability score using Softmax.", "To act as the 'optimizer' that guides the network downhill toward the lowest error."], m: [1, 3], e: "Gradient Descent is the optimizer. It calculates the slope of the error and takes steps 'downhill' to minimize the loss function."},
@@ -98,7 +160,6 @@ const Q=[
 {t: "5. Linear Models II", tp: "multi", q: "A neural network outputs raw logits: z = [10, 10, 10] for a 3-class problem. After applying the Softmax function, what must be true?", o: ["The resulting probabilities will be exactly [0.333, 0.333, 0.333].", "The resulting probabilities will sum to exactly 30.", "The network is highly confident in its prediction.", "The network is essentially making a random guess across the three classes.", "Applying the Sigmoid function instead would result in the exact same outputs."], m: [0, 3], e: "Softmax forces logits into a probability distribution summing to 1. Because the raw logits are identical, the probabilities are split perfectly evenly, indicating zero confidence/random guessing."},
 {t: "5. Linear Models II", tp: "multi", q: "You are building a very deep neural network with 50 hidden layers. You decide to use the Sigmoid activation function for every hidden layer instead of ReLU. Which risks are logically possible?", o: ["The network will suffer from the Vanishing Gradient problem during backpropagation.", "The network will learn significantly faster than a ReLU network.", "Neurons in the deep layers may saturate, causing their gradients to approach zero.", "The model will output probabilities summing to 1 at every single layer.", "The decision boundaries will remain perfectly linear."], m: [0, 2], e: "Sigmoid squashes values between 0 and 1. When chained 50 times, the gradients multiply by tiny decimals during backpropagation, shrinking to zero (vanishing) before they reach the early layers."},
 
-// ══════════ 6. UNSUPERVISED LEARNING ══════════
 {t: "6. Unsupervised Learning", tp: "multi", q: "Which of the following are characteristics of the DBSCAN clustering algorithm?", o: ["It requires the user to specify the number of clusters (K) in advance", "It can detect clusters of arbitrary shapes", "It is robust to outliers and classifies them as noise", "It relies heavily on parameters epsilon (eps) and minimum points (minPts)", "It uses centroids to iteratively minimize the within-cluster variance"], m: [1, 2, 3], e: "Unlike K-Means, DBSCAN groups points based on dense regions defined by 'eps' and 'minPts'. This allows it to find complex shapes and ignore noise."},
 {t: "6. Unsupervised Learning", tp: "multi", q: "How does unsupervised learning differ fundamentally from supervised learning?", o: ["Unsupervised learning data does not contain any Target labels or Ground Truth", "Unsupervised learning is exclusively used for predicting continuous house prices", "Unsupervised algorithms discover hidden structures and groupings based on feature similarity", "Supervised learning algorithms do not require a Loss Function"], m: [0, 2], e: "Unsupervised learning maps features (X) without known labels (y) to deduce hidden structure entirely on its own."},
 {t: "6. Unsupervised Learning", tp: "multi", q: "When is the K-Means algorithm mathematically prone to failing?", o: ["When the clusters are perfectly spherical and well-separated.", "When the clusters form non-spherical shapes (e.g., nested rings or moons).", "When the clusters have drastically different densities and sizes.", "When the number of clusters (K) is unknown and guessed incorrectly."], m: [1, 2, 3], e: "K-Means assumes spherical, equally-sized clusters radiating from a central mean. It fails spectacularly on complex geometrical shapes like nested rings."},
@@ -114,20 +175,18 @@ const Q=[
 {t: "6. Unsupervised Learning", tp: "multi", q: "You run the K-Means algorithm 5 different times on the exact same dataset using `k=3`. You notice the final clusters look slightly different each time. Which statements explain this?", o: ["K-Means relies on random initialization of the starting centroids.", "The algorithm may be getting trapped in different local minima during gradient descent.", "K-Means is fundamentally non-deterministic and never converges.", "The dataset likely contains nested, non-spherical shapes (e.g., moons) that confuse the distance metric.", "You should use DBSCAN instead to guarantee identical results every run if parameters are fixed."], m: [0, 1, 3, 4], e: "K-Means drops centroids randomly at the start. Depending on where they land, they can fall into different local optimums. If the data is non-spherical, it causes chaotic boundaries. DBSCAN is deterministic based on density."},
 {t: "6. Unsupervised Learning", tp: "multi", q: "You configure DBSCAN with `MinPts = 2` and set `ε (epsilon)` to an extremely small fraction close to 0. What is the most likely outcome?", o: ["The algorithm will group the entire dataset into one massive cluster.", "Almost every data point will be classified as an outlier/noise.", "The algorithm will form thousands of tiny micro-clusters.", "DBSCAN will automatically override your epsilon to find the optimal global variance.", "The algorithm will fail to compile."], m: [1, 2], e: "Epsilon is the 'search radius'. If the radius is microscopically small, very few points will find a neighbor. The vast majority of points will be labeled as noise, and only points sitting exactly on top of each other will form micro-clusters."},
 
-// ══════════ 7. PCA & t-SNE ══════════
 {t: "7. PCA & t-SNE", tp: "multi", q: "What are the primary goals and mechanics of Principal Component Analysis (PCA)?", o: ["To reduce the dimensionality of the data while retaining as much variance as possible", "To simplify data visualization by projecting high-dimensional data into 2D or 3D space", "To handle multicollinearity by transforming correlated features into linearly uncorrelated components", "To automatically identify and remove outlier data points before training"], m: [0, 1, 2], e: "PCA maps correlated variables onto a new set of orthogonal (uncorrelated) axes that maximize variance. It does not automatically remove outliers."},
 {t: "7. PCA & t-SNE", tp: "multi", q: "In t-SNE, P_ij represents High-Dimensional similarity, and Q_ij represents Low-Dimensional similarity. What happens during gradient descent if P_ij > Q_ij?", o: ["The points should be closer together, so the algorithm pulls them together", "The points should be further apart, so the algorithm pushes them apart", "The points are perfectly mapped and are left untouched", "The learning rate is automatically reduced to prevent overcorrections"], m: [0], e: "If P_ij > Q_ij, the points are highly similar in the original high-dimensional space but mapped too far apart in the 2D space. Gradient descent pulls them closer."},
 {t: "7. PCA & t-SNE", tp: "multi", q: "Why is feature scaling (e.g., StandardScaler) critical before applying PCA?", o: ["Because PCA is scale-variant; it seeks to maximize variance.", "If not scaled, a feature with naturally large numbers (e.g., Salary) will completely dominate the principal components.", "To convert all text columns into numeric data.", "Because the mathematical matrix decomposition (SVD/Eigenvectors) treats large magnitudes as higher importance."], m: [0, 1, 3], e: "PCA looks for variance. Without scaling, features with large raw numbers (like a $100,000 salary) will overshadow features with small numbers (like 25 years of age)."},
 {t: "7. PCA & t-SNE", tp: "multi", q: "What is the primary difference in use-case between PCA and t-SNE?", o: ["PCA is highly optimized for preserving global variance and structure.", "t-SNE is highly optimized for preserving local neighborhood structures (clustering visualization).", "t-SNE can be used as a preprocessing step to feed a linear regression model.", "PCA is linear, while t-SNE is non-linear and much more computationally expensive."], m: [0, 1, 3], e: "PCA is a global, linear transformation. t-SNE is non-linear, local, and used almost exclusively for 2D/3D visualization, NOT as a feature-engineering step for downstream ML models."},
 {t: "7. PCA & t-SNE", tp: "multi", q: "You run PCA on a dataset. Principal Component 1 (PC1) explains 90% of the variance, and PC2 explains 5%. Which statements are mathematically true?", o: ["PC1 and PC2 represent orthogonal (perpendicular) axes in the new feature space.", "PC1 captures the direction of maximum spread/scatter in the original dataset.", "You can safely drop PC1 to prevent overfitting.", "t-SNE would guarantee a better variance preservation than PC1.", "PC2 is highly correlated with PC1."], m: [0, 1], e: "PCA specifically creates axes that are completely uncorrelated (orthogonal) to each other. PC1 *always* points in the direction of the widest spread (highest variance). Dropping PC1 would destroy 90% of your data's information."},
 
-// ══════════ 8. LAB CONCEPTS ══════════
 {t: "8. Lab Concepts", tp: "multi", q: "When dealing with highly imbalanced datasets (e.g., Credit Card Defaults), why is raw Accuracy a misleading metric, and what should be prioritized?", o: ["A dummy model predicting 'Safe' for everyone will score 78% accuracy while failing the business objective", "Accuracy penalizes False Positives too heavily compared to False Negatives", "Recall should be prioritized to ensure the model catches as many actual defaulters as possible", "F1-Score should be used as a guardrail to balance Recall and Precision"], m: [0, 2, 3], e: "Accuracy is deceptive when classes are imbalanced. Missing a defaulter costs the bank principal loan money, making Recall the priority. F1-Score prevents the model from just guessing 'Default' for everyone."},
 {t: "8. Lab Concepts", tp: "multi", q: "What does changing the default probability threshold from 0.50 down to 0.30 accomplish in a banking context?", o: ["It creates an aggressive posture, accepting more False Positives (alarms) to catch more False Negatives (defaults).", "It tells the model to only flag a customer if it is 80% sure they will default.", "It mechanically forces the Recall to increase.", "It reduces the bank's exposure to catastrophic principal loan loss."], m: [0, 2, 3], e: "Shifting the threshold lower means the model flags defaults more easily. This catches edge cases (increasing Recall) but also triggers more false alarms (lowering Precision)."},
 {t: "8. Lab Concepts", tp: "multi", q: "Why do we use Stratified k-Fold Cross-Validation instead of regular k-Fold for imbalanced datasets?", o: ["To ensure the ratio of minority to majority classes (e.g., 22% Default / 78% Safe) remains consistent across every fold.", "To prevent a fold from accidentally containing zero instances of the minority class.", "To automatically apply synthetic data generation during the split.", "To speed up the training time of Random Forest models."], m: [0, 1], e: "Stratification ensures the class distribution remains identical across all train/validation splits, preventing catastrophic folds where the model sees no minority examples to learn from."}
 ];
 
-// Mapping of topic names to corresponding lectures
+// Map topics to labels
 const LM = {
   "1. Midterm Revision": "Lecture 1 ~ 6",
   "2. Ensemble Methods": "Lecture 7",
@@ -139,109 +198,242 @@ const LM = {
   "8. Lab Concepts": "Labs"
 };
 
-// Shuffle function
+// Assign unique IDs to questions
+Q.forEach((q, i) => q.id = i);
+const T = [...new Set(Q.map(x=>x.t))];
+
+// Persistence State & App State
+let P = {}; // P[id] = { score: num, u: [...] }
+let S = { view: 'home', topic: 'All', qs: [], ci: 0, ms: new Set() };
+
+// Utilities
 function sh(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-
-const T=[...new Set(Q.map(x=>x.t))];
-let S={s:'home',sl:new Set(T),qs:[],ci:0,an:[],ms:new Set()};
-
 function isM(q){return Array.isArray(q.m)}
-
-function gQ(){return sh(Q.filter(x=>S.sl.has(x.t)))}
-
-// RIGHT-MINUS-WRONG GRADING LOGIC
-function cor(q, ans){
+function calcScore(q, ans){
     if(!isM(q)) return ans===q.a ? 1 : 0; 
     if(!Array.isArray(ans)) return 0;
-    
     const s=new Set(ans), c=new Set(q.m);
     if(c.size===0) return s.size===0?1:0;
+    let sc = 0;
+    for(const v of s) { if(c.has(v)) sc += (1/c.size); else sc -= (1/c.size); }
+    return Math.max(0, Math.min(1, sc));
+}
+
+// Stats Calculator
+function getStats() {
+    let qs = S.topic === 'All' ? Q : Q.filter(q => q.t === S.topic);
+    let ans = qs.filter(q => P[q.id] != null);
+    let scr = ans.reduce((s, q) => s + P[q.id].score, 0);
+    let cor = ans.filter(q => P[q.id].score === 1).length;
+    let acc = ans.length ? (scr / ans.length) * 100 : 0;
+    let wrg = ans.filter(q => P[q.id].score < 1);
+    return { score: scr, correct: cor, answered: ans.length, total: qs.length, accuracy: acc, wrong: wrg };
+}
+
+// Core Render Logic
+function r() {
+    const a = document.getElementById('app');
+    let html = `
+        <div class="hd">
+            <h1>INF2008 Machine Learning</h1>
+            <p>Lectures 1-12 & Labs · Finals Revision</p>
+        </div>
+        ${rDashboard()}
+        <div class="div-line"></div>
+        ${rFilters()}
+        ${rControls()}
+    `;
+    if(S.view === 'home') html += rHome();
+    else if(S.view === 'quiz') html += rQuiz();
+    else if(S.view === 'review') html += rReview();
     
-    let score = 0;
-    for(const v of s) {
-        if(c.has(v)) score += (1 / c.size);
-        else score -= (1 / c.size); 
+    a.innerHTML = html;
+}
+
+function rDashboard() {
+    let st = getStats();
+    let col = st.accuracy >= 80 ? 'var(--ok)' : st.accuracy >= 50 ? 'var(--ac)' : 'var(--no)';
+    if(st.answered === 0) col = 'var(--td)';
+    
+    return `
+    <div class="db-row">
+        <div class="db-box"><span>SCORE</span><strong style="color:${col}">${st.score.toFixed(2)}</strong></div>
+        <div class="db-box"><span>CORRECT</span><strong style="color:${col}">${st.correct}/${st.answered}</strong></div>
+        <div class="db-box"><span>QUESTIONS</span><strong>${st.total}</strong></div>
+        <div class="db-box"><span>ACCURACY</span><strong style="color:${col}">${Math.round(st.accuracy)}%</strong></div>
+    </div>`;
+}
+
+function rFilters() {
+    let btns = `<button class="filt-btn ${S.topic === 'All' ? 'act' : ''}" onclick="setT('All')">All Topics</button>`;
+    T.forEach(t => {
+        btns += `<button class="filt-btn ${S.topic === t ? 'act' : ''}" onclick="setT('${t}')">${LM[t]}</button>`;
+    });
+    return `<div class="filt-row">${btns}</div>`;
+}
+
+function rControls() {
+    let st = getStats();
+    let allDone = st.answered === st.total && st.total > 0;
+    
+    return `
+    <div class="ctrl-row">
+        <button class="ctrl-btn qm" onclick="goQuiz()" ${allDone ? 'disabled' : ''}>Quiz Mode</button>
+        <button class="ctrl-btn" onclick="goReview()" ${st.wrong.length === 0 ? 'disabled' : ''}>Review Mistakes (${st.wrong.length})</button>
+        <button class="ctrl-btn rst" onclick="doReset()" ${st.answered === 0 ? 'disabled' : ''}>↺ Reset</button>
+    </div>`;
+}
+
+function rHome() {
+    return `
+    <div class="msg-box">
+        <h2>Ready to begin?</h2>
+        <p>Select a topic above and click <strong>Quiz Mode</strong>.</p>
+    </div>`;
+}
+
+function rQuiz() {
+    if(S.qs.length === 0) return rHome();
+    let q = S.qs[S.ci];
+    let n = S.qs.length;
+    let d = P[q.id] != null; // is answered
+    let multi = isM(q);
+    
+    let uSet = new Set();
+    let cSet = new Set();
+    if(d) {
+        let u = P[q.id].u;
+        if(multi && Array.isArray(u)) uSet = new Set(u);
+        if(multi) cSet = new Set(q.m); else cSet = new Set([q.a]);
     }
-    return Math.max(0, Math.min(1, score));
+
+    let statusHtml = '';
+    if(d) {
+        let sc = P[q.id].score;
+        if(sc === 1) statusHtml = '<span style="color:var(--ok)">✓ Perfect (1.0 pt)</span>';
+        else if(sc > 0) statusHtml = `<span class="partial">⚠ Partial (${sc.toFixed(2)} pts)</span>`;
+        else statusHtml = '<span style="color:var(--no)">✗ Incorrect (0.0 pts)</span>';
+    }
+
+    let opts = q.o.map((o,i) => {
+        let c = 'op';
+        if(d) {
+            c += ' ds';
+            if(cSet.has(i)) c += ' ok';
+            else if(uSet.has(i)) c += ' no';
+            else c += ' dm';
+        } else if(multi && S.ms.has(i)) {
+            c += ' sel';
+        }
+        let clk = multi ? (d ? '' : `mt(${i})`) : `pk(${i})`;
+        let lbl = multi ? `<span class="cb">${(d ? (cSet.has(i)?'✓':(uSet.has(i)?'✗':'')) : (S.ms.has(i)?'✓':''))}</span>` : `<span class="ol">${'ABCD'[i]}</span>`;
+        return `<div class="${c}" onclick="${d ? '' : clk}">${lbl}<span>${o}</span></div>`;
+    }).join('');
+
+    let subBtn = multi && !d ? `<button class="nx-btn" style="background:var(--ac2)" onclick="sm()" ${S.ms.size===0?'disabled':''}>Submit Answer</button>` : '';
+    let nxBtn = d ? `<button class="nx-btn" onclick="nx()">${S.ci < n-1 ? 'Next Question →' : 'Finish Session'}</button>` : '';
+
+    return `
+    <div class="qc">
+        <div class="qh">
+            <span class="qt">${LM[q.t] || q.t}</span>
+            <span class="qp">Question ${S.ci+1} of ${n}</span>
+        </div>
+        <h2>${q.q}${multi?'<span class="ms-tag">MULTI-SELECT</span>':''}</h2>
+        <div class="os">${opts}</div>
+        ${subBtn}
+        ${d ? `<div class="ex"><strong>${statusHtml}</strong> — ${q.e}</div>` : ''}
+        ${nxBtn}
+    </div>`;
 }
 
-function r(){const a=document.getElementById('app');({home:rH,quiz:rQ,results:rR})[S.s](a)}
-
-function rH(el){
-const al=S.sl.size===T.length,cn=Q.filter(x=>S.sl.has(x.t)).length;
-el.innerHTML=`<div class="hd"><h1>INF2008 Machine Learning Finals</h1><p>Interactive Revision (Lectures 1-12 & Labs) · <span class="mn">${Q.length} questions</span></p></div>
-<div class="cl"><button class="sa" onclick="tA()">${al?'Deselect All':'Select All'}</button><span class="qn">${cn} questions selected</span></div>
-<div class="tg">${T.map(t=>`<div class="tc ${S.sl.has(t)?'sl':''}" onclick="tT('${t}')"><h3>${LM[t] || t}</h3><span>${Q.filter(x=>x.t===t).length} questions</span></div>`).join('')}</div>
-<div class="bg_"><button class="bt bp" onclick="go()" ${!S.sl.size?'disabled':''}>Start Quiz →</button></div>`}
-
-function rQ(el){
-const q=S.qs[S.ci],n=S.qs.length,p=S.ci/n*100,d=S.an[S.ci]!=null,multi=isM(q),u=S.an[S.ci];
-const uSet=multi&&Array.isArray(u)?new Set(u):new Set();
-const cSet=multi?new Set(q.m):new Set([q.a]);
-
-let scoreVal = 0;
-let statusText = '';
-if(d) {
-    scoreVal = cor(q, u);
-    if(scoreVal === 1) statusText = '<span style="color:var(--ok)">✓ Perfect (1.0 pt)</span>';
-    else if(scoreVal > 0) statusText = `<span class="partial">⚠ Partial (${scoreVal.toFixed(2)} pts)</span>`;
-    else statusText = '<span style="color:var(--no)">✗ Incorrect (0.0 pts)</span>';
+function rReview() {
+    let st = getStats();
+    if(st.wrong.length === 0) return rHome();
+    
+    let html = st.wrong.map((q, idx) => `
+    <div class="qc">
+        <div class="qh">
+            <span class="qt">${LM[q.t] || q.t}</span>
+            <span class="qp" style="color:var(--wr)">Score: ${P[q.id].score.toFixed(2)} pts</span>
+        </div>
+        <h2 style="font-size:1rem;margin-bottom:12px">${q.q}</h2>
+        <div class="ex" style="margin-top:0"><strong>Explanation:</strong> ${q.e}</div>
+    </div>`).join('');
+    
+    return `<div><h2 style="margin-bottom:16px;font-size:1.1rem">Reviewing Mistakes</h2>${html}</div>`;
 }
 
-el.innerHTML=`<div class="qh"><span class="qt">${q.t}</span><span class="qp">${S.ci+1}/${n}</span></div>
-<div class="pb"><div class="pf" style="width:${p}%"></div></div>
-<div class="qc"><h2>${q.q}${multi?'<span class="ms-tag">MULTI-SELECT (Right-Minus-Wrong)</span>':''}</h2><div class="os">${q.o.map((o,i)=>{
-let c='op';
-if(d){
-  c+=' ds';
-  if(cSet.has(i))c+=' ok'; 
-  else if(uSet.has(i)&&!cSet.has(i))c+=' no'; 
-  else c+=' dm'; 
-}else if(multi&&S.ms.has(i)){c+=' sel'}
-return`<div class="${c}" onclick="${multi?(d?'':`mt(${i})`):(`pk(${i})`)}">
-${multi?`<span class="cb">${(d?(cSet.has(i)?'✓':(uSet.has(i)?'✗':'')):(S.ms.has(i)?'✓':''))}</span>`:`<span class="ol">${'ABCD'[i]}</span>`}
-<span>${o}</span></div>`}).join('')}
-${multi&&!d?`<button class="sub-btn" onclick="sm()" ${S.ms.size===0?'disabled':''}>Submit Answer</button>`:''}
-</div>
-${d?`<div class="ex"><strong>${statusText}</strong> — ${q.e}</div>`:''}</div>
-<div class="bg_">${d?(S.ci<n-1?`<button class="bt bp" onclick="nx()">Next →</button>`:`<button class="bt bp" onclick="rs()">Results →</button>`):''}
-<button class="bt bs" onclick="rt()">⟲ Restart</button></div>`}
+// Actions
+function setT(t) {
+    S.topic = t;
+    S.view = 'home';
+    r();
+}
 
-function rR(el){
-const n=S.qs.length;
+function doReset() {
+    let qs = S.topic === 'All' ? Q : Q.filter(q => q.t === S.topic);
+    qs.forEach(q => delete P[q.id]);
+    S.view = 'home';
+    r();
+}
 
-let totalPoints = 0;
-S.an.forEach((a, i) => { totalPoints += cor(S.qs[i], a); });
-totalPoints = Math.round(totalPoints * 100) / 100; 
+function goQuiz() {
+    let qs = S.topic === 'All' ? Q : Q.filter(q => q.t === S.topic);
+    // Filter out already answered questions
+    let pending = qs.filter(q => P[q.id] == null);
+    if(pending.length === 0) return; // Prevent start if all done
+    S.qs = sh(pending);
+    S.ci = 0;
+    S.ms = new Set();
+    S.view = 'quiz';
+    r();
+}
 
-const p = Math.round((totalPoints / n) * 100); 
-const ci=2*Math.PI*76, of_=ci-p/100*ci;
+function goReview() {
+    S.view = 'review';
+    r();
+}
 
-let gc,gl;if(p>=85){gc='a';gl='Excellent'}else if(p>=70){gc='b';gl='Good'}else if(p>=50){gc='c';gl='Needs Work'}else{gc='f';gl='Review Material'}
+function pk(i) {
+    let q = S.qs[S.ci];
+    if(P[q.id] != null) return;
+    let score = calcScore(q, i);
+    P[q.id] = { score: score, u: i };
+    r();
+}
 
-const bd={};S.qs.forEach((q,i)=>{if(!bd[q.t])bd[q.t]={c:0,t:0};bd[q.t].t++;bd[q.t].c+=cor(q,S.an[i])});
+function mt(i) {
+    let q = S.qs[S.ci];
+    if(P[q.id] != null) return;
+    S.ms.has(i) ? S.ms.delete(i) : S.ms.add(i);
+    r();
+}
 
-el.innerHTML=`<div class="rs"><div class="hd"><h1>Quiz Complete</h1></div>
-<div class="sr"><svg viewBox="0 0 160 160"><circle class="bg2" cx="80" cy="80" r="76"/><circle class="fg" cx="80" cy="80" r="76" stroke-dasharray="${ci}" stroke-dashoffset="${of_}"/></svg>
-<div class="st"><div class="nm">${p}%</div><div class="lb">${totalPoints} / ${n}</div></div></div>
-<h2>${gl}</h2><div class="gd ${gc}">${p}% (Right-Minus-Wrong)</div>
-<div class="tb_"><h3>Topic Breakdown (Points)</h3>${Object.entries(bd).map(([t,d])=>{
-    const roundedScore = Math.round(d.c * 10) / 10;
-    const tp=Math.round((d.c/d.t)*100);
-    const cl=tp>=80?'var(--ok)':tp>=50?'var(--ac)':'var(--no)';
-return`<div class="br"><span>${t}</span><span style="color:${cl}">${roundedScore} / ${d.t} pts</span></div>`}).join('')}</div>
-<div class="bg_"><button class="bt bp" onclick="rt()">⟲ Restart</button><button class="bt bs" onclick="hm()">← Topics</button></div></div>`}
+function sm() {
+    let q = S.qs[S.ci];
+    if(P[q.id] != null || S.ms.size === 0) return;
+    let uArr = [...S.ms];
+    let score = calcScore(q, uArr);
+    P[q.id] = { score: score, u: uArr };
+    S.ms = new Set();
+    r();
+}
 
-function tT(t){S.sl.has(t)?S.sl.delete(t):S.sl.add(t);r()}
-function tA(){S.sl=S.sl.size===T.length?new Set():new Set(T);r()}
-function go(){S.qs=gQ();S.ci=0;S.an=[];S.ms=new Set();S.s='quiz';r();scrollTo(0,0)}
-function pk(i){if(S.an[S.ci]!=null)return;S.an[S.ci]=i;r()}
-function mt(i){if(S.an[S.ci]!=null)return;S.ms.has(i)?S.ms.delete(i):S.ms.add(i);r()}
-function sm(){if(S.an[S.ci]!=null||S.ms.size===0)return;S.an[S.ci]=[...S.ms];S.ms=new Set();r()}
-function nx(){S.ci++;S.ms=new Set();r();scrollTo(0,0)}
-function rs(){S.s='results';r();scrollTo(0,0)}
-function rt(){S.qs=gQ();S.ci=0;S.an=[];S.ms=new Set();S.s='quiz';r();scrollTo(0,0)}
-function hm(){S.s='home';S.ms=new Set();r();scrollTo(0,0)}
+function nx() {
+    if(S.ci < S.qs.length - 1) {
+        S.ci++;
+        S.ms = new Set();
+        r();
+        window.scrollTo(0,0);
+    } else {
+        S.view = 'home';
+        r();
+        window.scrollTo(0,0);
+    }
+}
+
+// Init
 r();
 </script>
 </body>
