@@ -351,15 +351,25 @@ function rReview() {
     let st = getStats();
     if(st.wrong.length === 0) return rHome();
     
-    let html = st.wrong.map((q, idx) => `
-    <div class="qc">
-        <div class="qh">
-            <span class="qt">${LM[q.t] || q.t}</span>
-            <span class="qp" style="color:var(--wr)">Score: ${P[q.id].score.toFixed(2)} pts</span>
-        </div>
-        <h2 style="font-size:1rem;margin-bottom:12px">${q.q}</h2>
-        <div class="ex" style="margin-top:0"><strong>Explanation:</strong> ${q.e}</div>
-    </div>`).join('');
+    let html = st.wrong.map((q, idx) => {
+        let ansHtml = isM(q) ? q.m.map(i => `&bull; ${q.o[i]}`).join('<br>') : `&bull; ${q.o[q.a]}`;
+        
+        return `
+        <div class="qc">
+            <div class="qh">
+                <span class="qt">${LM[q.t] || q.t}</span>
+                <span class="qp" style="color:var(--wr)">Score: ${P[q.id].score.toFixed(2)} pts</span>
+            </div>
+            <h2 style="font-size:1rem;margin-bottom:12px">${q.q}</h2>
+            <div class="ex" style="margin-top:0">
+                <div style="margin-bottom: 10px; color: var(--tx);">
+                    <strong style="color: var(--ok);">Correct Answer(s):</strong><br>
+                    <div style="margin-top: 4px; padding-left: 4px; line-height: 1.6;">${ansHtml}</div>
+                </div>
+                <div><strong>Explanation:</strong> ${q.e}</div>
+            </div>
+        </div>`;
+    }).join('');
     
     return `<div><h2 style="margin-bottom:16px;font-size:1.1rem">Reviewing Mistakes</h2>${html}</div>`;
 }
