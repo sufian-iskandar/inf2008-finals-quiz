@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INF2008 Machine Learning Finals - Test Yourself</title>
+    <style>
+        :root {
+            --bg-color: #f6f8fa;
+            --text-color: #24292e;
+            --container-bg: #ffffff;
+            --primary-color: #2ea44f;
+            --primary-hover: #2c974b;
+            --border-color: #e1e4e8;
+            --correct-bg: #dcffe4;
+            --correct-border: #34d058;
+            --wrong-bg: #ffeef0;
+            --wrong-border: #f97583;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 { border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+        
+        .info-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #0366d6;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.95em;
+        }
+
+        .controls { display: flex; gap: 15px; margin-bottom: 25px; align-items: center; flex-wrap: wrap; }
+        select, button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+        }
+        button:hover { background-color: var(--primary-hover); }
+
+        .question-block {
+            display: none;
+            margin-bottom: 30px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .question-block.active { display: block; }
+
+        .option-label {
+            display: flex;
+            align-items: baseline;
+            margin: 10px 0;
+            padding: 12px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .option-label:hover { background: #e1e4e8; }
+        .option-label input[type="checkbox"] { margin-right: 15px; transform: scale(1.2); }
+
+        .feedback-area { margin-top: 20px; display: none; }
+        .feedback-item {
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+        .feedback-item.correct { background: var(--correct-bg); border: 1px solid var(--correct-border); }
+        .feedback-item.wrong { background: var(--wrong-bg); border: 1px solid var(--wrong-border); }
+        
+        .score-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            padding: 15px;
+            background: #f1f8ff;
+            border: 1px solid #c8e1ff;
+            border-radius: 6px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>INF2008 Finals: Test Yourself</h1>
+    
+    <div class="info-box">
+        <strong>Final Quiz Rules (Simulated):</strong><br>
+        • Format: Multi-select questions (Select ALL that apply).<br>
+        • Grading: Right-Minus-Wrong selections (partial marks per option).<br>
+        • Scope: Lectures 1-12 & Labs 1-7.<br>
+        • Exclusions: Lecture 10 (Slides 17-19), Lecture 11 (Slide 21).<br>
+        • Open book. Calculator allowed.
+    </div>
+
+    <div class="controls" id="setup-controls">
+        <label for="topic-select"><strong>Select Topic:</strong></label>
+        <select id="topic-select">
+            <option value="All">All Topics (Full Mock Exam)</option>
+            <option value="Midterm Review">Midterm Review (Lectures 1-6)</option>
+            <option value="Lecture 7">Lecture 7: Ensemble Methods</option>
+            <option value="Lecture 8">Lecture 8: Embeddings & Encoding</option>
+            <option value="Lecture 9">Lecture 9: Linear Models I</option>
+            <option value="Lecture 10">Lecture 10: Linear Models II</option>
+            <option value="Lecture 11">Lecture 11: Unsupervised Learning</option>
+            <option value="Lecture 12">Lecture 12: PCA</option>
+        </select>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <div id="quiz-container"></div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="submit-btn" style="display: none;" onclick="gradeQuiz()">Submit Exam & Calculate Score</button>
+    </div>
+
+    <div id="results-container" class="feedback-area"></div>
+</div>
+
+<script>
+    // --- QUESTION BANK ---
+    // Extracted directly from your provided Midterm PDF, Lecture PDFs, and Lab concepts.
+    const questions = [
+        {
+            topic: "Midterm Review",
+            text: "You are building a model to predict whether a student will fail a course at the end of the semester. The final exam accounts for 80% of the total course grade. The prediction is made at Week 6, before the final exam. The dataset contains: attendance_rate_first_6_weeks, total_number_of_assignments_submitted, final_exam_score, risk_flag_assigned_by_advisor, major. Which features introduce serious validity problems (Target Leakage) if used as predictors at Week 6? Select ALL that apply.",
+            options: [
+                { text: "risk_flag_assigned_by_advisor", correct: true },
+                { text: "attendance_rate_first_6_weeks", correct: false },
+                { text: "major", correct: false },
+                { text: "final_exam_score", correct: true },
+                { text: "total_number_of_assignments_submitted", correct: false }
+            ],
+            rationale: "Final exam score happens after Week 6, causing severe target leakage. The risk flag by the advisor might incorporate future subjective knowledge or proxy data not uniformly available at Week 6."
+        },
+        {
+            topic: "Lecture 7",
+            text: "In Gradient Boosting, what do new sequential trees learn?",
+            options: [
+                { text: "Residuals", correct: true },
+                { text: "Loss gradients", correct: true },
+                { text: "Original labels directly", correct: false },
+                { text: "Original target values", correct: false },
+                { text: "Bootstrap-resampled targets", correct: false }
+            ],
+            rationale: "Gradient boosting models are trained sequentially, where each new model focuses on minimizing the errors (residuals/loss gradients) of the previous models."
+        },
+        {
+            topic: "Lecture 7",
+            text: "Why is feature subsampling important in Random Forests? Select ALL that apply.",
+            options: [
+                { text: "Prevents strong features from dominating all trees", correct: true },
+                { text: "Increases tree diversity", correct: true },
+                { text: "Reduces correlation between trees", correct: true },
+                { text: "Increases bias significantly", correct: false },
+                { text: "Improves ensemble variance reduction", correct: true }
+            ],
+            rationale: "Feature subsampling at every split decorrelates the trees, preventing a single dominant feature from being the root node every time, which drastically reduces overall model variance."
+        },
+        {
+            topic: "Lecture 8",
+            text: "Which of the following statements about One-Hot Encoding (OHE) versus Label Encoding are correct? Select ALL that apply.",
+            options: [
+                { text: "OHE avoids Ordinal Misinterpretation by creating separate binary columns.", correct: true },
+                { text: "Label Encoding is highly recommended for Non-Ordered Categorical Features like 'Color'.", correct: false },
+                { text: "OHE can lead to the Curse of Dimensionality if there are many unique categories.", correct: true },
+                { text: "Label Encoding is generally more memory efficient than OHE.", correct: true }
+            ],
+            rationale: "Label encoding imposes an artificial mathematical hierarchy (0 < 1 < 2), which is bad for non-ordinal categories. While OHE fixes this, it consumes massive memory and expands dimensions if unique categories are high."
+        },
+        {
+            topic: "Lecture 9",
+            text: "If the activation function of a single-layer perceptron does nothing to the math (i.e., f(z) = z), the perceptron is mathematically identical to which of the following?",
+            options: [
+                { text: "Logistic Regression", correct: false },
+                { text: "Multiple Linear Regression", correct: true },
+                { text: "Decision Tree", correct: false },
+                { text: "Support Vector Machine", correct: false }
+            ],
+            rationale: "Without a non-linear activation function (like ReLU or Sigmoid), a neural network simply calculates the weighted sum of inputs plus bias (z = Σ(m*x) + c), which is the exact equation for Multiple Linear Regression."
+        },
+        {
+            topic: "Lecture 10",
+            text: "A model produces logits: z = [3, 1, -1]. After applying the Softmax function, which statements MUST be true? Select ALL that apply.",
+            options: [
+                { text: "The probabilities sum to 1", correct: true },
+                { text: "The class with the largest logit will have the largest probability", correct: true },
+                { text: "All probabilities must be greater than zero", correct: true },
+                { text: "The probabilities must be evenly spaced", correct: false },
+                { text: "Increasing z1 will decrease the other probabilities", correct: true }
+            ],
+            rationale: "Softmax forces all outputs into a probability distribution (summing to 1, all > 0). Because they sum to 1, if one logit increases, the mathematical share for the others must decrease."
+        },
+        {
+            topic: "Lecture 10",
+            text: "Which choices are reasonable output activation functions when predicting continuous values like House Prices (Regression)? Select ALL that apply.",
+            options: [
+                { text: "Identity f(z) = z", correct: true },
+                { text: "Sigmoid", correct: false },
+                { text: "Softmax", correct: false },
+                { text: "tanh", correct: false },
+                { text: "Step function", correct: false }
+            ],
+            rationale: "For regression tasks where the output can be any continuous real number, you should not constrain the output with functions like Sigmoid (bounds 0 to 1) or Softmax (used for classification probabilities)."
+        },
+        {
+            topic: "Lecture 11",
+            text: "Which of the following are characteristics of the DBSCAN clustering algorithm? Select ALL that apply.",
+            options: [
+                { text: "It requires the user to specify the number of clusters (K) in advance.", correct: false },
+                { text: "It can detect clusters of arbitrary shapes.", correct: true },
+                { text: "It is robust to outliers and classifies them as noise.", correct: true },
+                { text: "It relies heavily on parameters epsilon (eps) and minimum points (minPts).", correct: true }
+            ],
+            rationale: "Unlike K-Means (which assumes spherical clusters and requires K upfront), DBSCAN groups points based on dense regions defined by 'eps' and 'minPts', allowing it to find weird shapes and ignore standalone noise."
+        },
+        {
+            topic: "Lecture 12",
+            text: "What are the primary goals and mechanics of Principal Component Analysis (PCA)? Select ALL that apply.",
+            options: [
+                { text: "To reduce the dimensionality of the data while retaining as much variance as possible.", correct: true },
+                { text: "To simplify data visualization by projecting high-dimensional data into 2D or 3D space.", correct: true },
+                { text: "To handle multicollinearity by transforming correlated features into linearly uncorrelated components.", correct: true },
+                { text: "To automatically identify and remove outlier data points before training.", correct: false }
+            ],
+            rationale: "PCA is an unsupervised dimensionality reduction technique that maps correlated variables onto a new set of orthogonal (uncorrelated) axes that maximize variance."
+        }
+    ];
+
+    let currentQuestions = [];
+
+    function startQuiz() {
+        const selectedTopic = document.getElementById("topic-select").value;
+        const quizContainer = document.getElementById("quiz-container");
+        
+        // Filter questions
+        if (selectedTopic === "All") {
+            currentQuestions = [...questions];
+        } else {
+            currentQuestions = questions.filter(q => q.topic.includes(selectedTopic));
+        }
+
+        // Shuffle questions
+        currentQuestions.sort(() => Math.random() - 0.5);
+
+        // Render HTML
+        quizContainer.innerHTML = "";
+        currentQuestions.forEach((q, index) => {
+            let optionsHTML = "";
+            // Shuffle options
+            let shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+            
+            shuffledOptions.forEach((opt, optIndex) => {
+                optionsHTML += `
+                    <label class="option-label">
+                        <input type="checkbox" name="q${index}" value="${opt.text}" data-correct="${opt.correct}">
+                        ${opt.text}
+                    </label>
+                `;
+            });
+
+            quizContainer.innerHTML += `
+                <div class="question-block active" id="question-${index}">
+                    <h3>Question ${index + 1} <span style="font-size:0.7em; color:#586069;">(${q.topic})</span></h3>
+                    <p><strong>${q.text}</strong></p>
+                    <div class="options-container">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        });
+
+        document.getElementById("submit-btn").style.display = "block";
+        document.getElementById("results-container").style.display = "none";
+        document.getElementById("results-container").innerHTML = "";
+    }
+
+    function gradeQuiz() {
+        const resultsContainer = document.getElementById("results-container");
+        resultsContainer.innerHTML = "<h2>Exam Results & Feedback</h2>";
+        resultsContainer.style.display = "block";
+
+        let totalScore = 0;
+        let maxPossibleScore = 0;
+
+        currentQuestions.forEach((q, index) => {
+            const questionBlock = document.getElementById(`question-${index}`);
+            const checkboxes = questionBlock.querySelectorAll(`input[name="q${index}"]`);
+            
+            let questionScore = 0;
+            let totalCorrectOptions = q.options.filter(o => o.correct).length;
+            maxPossibleScore += totalCorrectOptions; // 1 point per correct option
+
+            let userSelected = [];
+            let correctAnswers = [];
+
+            checkboxes.forEach(box => {
+                const isCorrect = box.getAttribute('data-correct') === 'true';
+                if (isCorrect) correctAnswers.push(box.value);
+
+                if (box.checked) {
+                    userSelected.push(box.value);
+                    if (isCorrect) {
+                        questionScore += 1; // +1 for correct selection
+                    } else {
+                        questionScore -= 1; // -1 for wrong selection (Right-Minus-Wrong)
+                    }
+                }
+            });
+
+            // Prevent negative scores per question (Standard exam behavior)
+            if (questionScore < 0) questionScore = 0;
+            totalScore += questionScore;
+
+            // Generate Feedback UI
+            let isPerfect = (questionScore === totalCorrectOptions && userSelected.length === totalCorrectOptions);
+            let feedbackClass = isPerfect ? "correct" : "wrong";
+            let statusText = isPerfect ? "✅ Perfect!" : `❌ Partial/Incorrect (Scored ${questionScore}/${totalCorrectOptions})`;
+
+            resultsContainer.innerHTML += `
+                <div class="feedback-item ${feedbackClass}">
+                    <strong>Q${index + 1}: ${statusText}</strong>
+                    <p><em>${q.text}</em></p>
+                    <p><strong>You Selected:</strong> ${userSelected.length > 0 ? userSelected.join(" | ") : "Nothing"}</p>
+                    <p><strong>Correct Answers:</strong> ${correctAnswers.join(" | ")}</p>
+                    <p style="font-size:0.9em; color:#444; border-top: 1px solid #ccc; padding-top: 5px;"><strong>Professor's Rationale:</strong> ${q.rationale}</p>
+                </div>
+            `;
+        });
+
+        // Final Score Math
+        let percentage = Math.round((totalScore / maxPossibleScore) * 100);
+        resultsContainer.innerHTML = `
+            <div class="score-display">
+                Final Score: ${totalScore} / ${maxPossibleScore} Points (${percentage}%)<br>
+                <span style="font-size:0.6em; font-weight:normal;">*Scoring follows Right-Minus-Wrong partial marking scheme per question.</span>
+            </div>
+        ` + resultsContainer.innerHTML;
+        
+        // Scroll to results
+        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
